@@ -52,4 +52,4 @@ jobs:
           app-name: 'WebAppMagnum'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_174F4D3E03FB4752BD2CC04DD131FA7A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8E77D1FDD6E54091B89305029DC65F26 }}
