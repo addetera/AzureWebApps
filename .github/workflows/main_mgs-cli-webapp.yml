@@ -39,23 +39,13 @@ jobs:
   deploy:
     runs-on: windows-latest
     needs: build
-    permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
-
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: ASP-app
       
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_79E5E7F3BE874424BFEB4C941FE41981 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_64EF2CC238C14C49A869E2C6DAE7C4C1 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_999A95EB82C54CB3BAF1B546C7B2117C }}
-
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -63,4 +53,4 @@ jobs:
           app-name: 'mgs-cli-webapp'
           slot-name: 'Production'
           package: .
-          
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_718217C9D1E746B9A9DED93A3A3A7E64 }}
